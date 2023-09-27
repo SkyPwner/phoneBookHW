@@ -1,20 +1,20 @@
-package dto;
+package homework.dto;
 
-public class UserDTO {
+public class UserInfo {
     String name;
     String lastName;
     String email;
     String password;
 
-    public UserDTO() {
+    public UserInfo() {
     }
 
-    public UserDTO(String email, String password) {
+    public UserInfo(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public UserDTO(String name, String lastName, String email, String password) {
+    public UserInfo(String email, String password, String name, String lastName) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;

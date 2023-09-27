@@ -1,4 +1,4 @@
-package manager;
+package classwork.manager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     WebDriver driver;
-    UserHelper userHelper;
+    UserPage userPage;
 
     public void init() {
         driver = new ChromeDriver();
@@ -16,11 +16,11 @@ public class ApplicationManager {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-        userHelper = new UserHelper(driver);
+        userPage = new UserPage(driver);
     }
 
-    public UserHelper getUserHelper() {
-        return userHelper;
+    public UserPage userHelper() {
+        return userPage;
     }
 
     public void tearDown() {

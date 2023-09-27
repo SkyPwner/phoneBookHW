@@ -1,6 +1,6 @@
-package tests;
+package homework.tests;
 
-import manager.ApplicationManager;
+import homework.manager.ApplicationManager;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

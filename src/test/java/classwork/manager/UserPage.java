@@ -1,13 +1,13 @@
-package manager;
+package classwork.manager;
 
-import dto.UserDTO;
-import dto.UserDTOWith;
+import classwork.dto.UserDTO;
+import classwork.dto.UserDTOWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class UserHelper extends BaseHelper{
+public class UserPage extends BasePageObject {
 
-    public UserHelper(WebDriver driver) {
+    public UserPage(WebDriver driver) {
         super(driver);
     }
 
