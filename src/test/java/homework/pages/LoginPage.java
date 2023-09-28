@@ -2,10 +2,16 @@ package homework.pages;
 
 import homework.dto.UserInfoWith;
 import homework.utils.RandomUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import homework.dto.UserInfo;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -13,8 +19,9 @@ public class LoginPage extends BasePage {
     By passwordInput = By.xpath("//input[@name='password']");
     By loginButton = By.xpath("//button[@name='login']");
     By registrationButton = By.xpath("//button[@name='registration']");
-    By homeLink = By.xpath("//a[text()='HOME']");
-    By aboutLink = By.xpath("//a[text()='ABOUT']");
+    By homeLink = By.xpath("//a[@href='/home']");
+    By aboutLink = By.xpath("//a[@href='/about']");
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -56,6 +63,18 @@ public class LoginPage extends BasePage {
         click(aboutLink);
     }
 
+    public void waitForCondition(){
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2).toMillis());
+    }
+    public void waitForAlertAndAccept() {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2).toMillis());
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+    }
+
+    public By errorMessage() {
+        return By.xpath("//div[text()='Registration failed with code 400']");
+    }
     public boolean isElementDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();

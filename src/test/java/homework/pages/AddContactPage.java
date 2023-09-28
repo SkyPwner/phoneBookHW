@@ -49,4 +49,12 @@ public class AddContactPage extends BasePage {
         click(saveButton);
     }
 
+    public boolean isContactDisplayed(String contactName) {
+        By contactLocator = By.xpath("//h2[text()='" + contactName + "']");
+        try {
+            return driver.findElement(contactLocator).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

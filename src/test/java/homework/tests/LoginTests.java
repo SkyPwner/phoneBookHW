@@ -38,10 +38,7 @@ public class LoginTests extends BaseTest {
         app.homePage().clickLoginLink();
         UserInfo userInfo = new UserInfo("qweasd@gmail.com", "qwe123124123");
         app.loginPage().login(userInfo);
-
-        Wait<WebDriver> wait = new WebDriverWait(app.getDriver(), Duration.ofSeconds(2).toMillis());
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        alert.accept();
+        app.loginPage().waitForAlertAndAccept();
 
         By errorMessageLocator = By.xpath("//div[text()='Login Failed with code 401']");
         Assert.assertTrue(app.loginPage().isElementDisplayed(errorMessageLocator));

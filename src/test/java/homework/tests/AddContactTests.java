@@ -30,7 +30,7 @@ public class AddContactTests extends BaseTest {
 
         app.addContactPage().clickSaveButton();
 
-        By asdContactLocator = By.xpath("//h2[text()='Test Name']");
-        Assert.assertTrue(app.getDriver().findElement(asdContactLocator).isDisplayed());
+        By ContactLocator = By.xpath("//h2[text()='Test Name']");
+        app.addContactPage().isContactDisplayed("Test Name");
     }
 }

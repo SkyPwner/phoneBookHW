@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class AboutPage extends BasePage {
 
     By aboutText = By.xpath("//h1[contains(text(),'Contacts Web Application')]");
-    By homeLink = By.xpath("//a[text()='HOME']");
+    By homeLink = By.xpath("//a[@href='/home']");
     By loginLink = By.xpath("//a[text()='LOGIN']");
 
     public AboutPage(WebDriver driver) {

@@ -19,7 +19,7 @@ public class RegistrationTests extends BaseTest {
     public void positiveRegistration() {
         app.homePage().clickLoginLink();
         app.loginPage().register();
-        Wait<WebDriver> wait = new WebDriverWait(app.getDriver(), Duration.ofSeconds(2).toMillis());
+        app.loginPage().waitForCondition();
         Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
     }
 
@@ -28,12 +28,7 @@ public class RegistrationTests extends BaseTest {
         app.homePage().clickLoginLink();
         UserInfo existingUser = new UserInfo("test@mail.ru", "1234");
         app.loginPage().register(existingUser);
-
-        Wait<WebDriver> wait = new WebDriverWait(app.getDriver(), Duration.ofSeconds(2).toMillis());
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        alert.accept();
-
-        By errorMessageLocator = By.xpath("//div[text()='Registration failed with code 400']");
-        Assert.assertTrue(app.loginPage().isElementDisplayed(errorMessageLocator));
+        app.loginPage().waitForAlertAndAccept();
+        Assert.assertTrue(app.loginPage().isElementDisplayed(app.loginPage().errorMessage()));
     }
 }

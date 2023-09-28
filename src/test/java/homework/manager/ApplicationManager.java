@@ -50,9 +50,9 @@ public class ApplicationManager {
         return addContactPage;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
+//    public WebDriver getDriver() {
+//        return driver;
+//    }
 
     public void tearDown() {
         driver.quit();
