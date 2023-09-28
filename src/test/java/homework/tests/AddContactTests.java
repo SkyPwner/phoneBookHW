@@ -1,5 +1,6 @@
 package homework.tests;
 
+import homework.dto.ContactInfo;
 import homework.dto.UserInfo;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -14,23 +15,15 @@ public class AddContactTests extends BaseTest {
         app.loginPage().login(userInfo);
         app.userProfilePage().clickAddLink();
 
-        String name = "Test Name";
-        String lastName = "Test Last Name";
-        String phone = "1234567890";
-        String email = "test@example.com";
-        String address = "Haifa";
-        String description = "Test description";
+        ContactInfo contact = new ContactInfo();
+        contact.setName("Test Name");
+        contact.setLastName("Test Last Name");
+        contact.setPhone("1234567890");
+        contact.setEmail("test@example.com");
+        contact.setAddress("Haifa");
+        contact.setDescription("Test description");
 
-        app.addContactPage().enterName(name);
-        app.addContactPage().enterLastName(lastName);
-        app.addContactPage().enterPhone(phone);
-        app.addContactPage().enterEmail(email);
-        app.addContactPage().enterAddress(address);
-        app.addContactPage().enterDescription(description);
-
-        app.addContactPage().clickSaveButton();
-
-        By ContactLocator = By.xpath("//h2[text()='Test Name']");
-        app.addContactPage().isContactDisplayed("Test Name");
+        app.addContactPage().addContact(contact);
+        Assert.assertTrue(app.addContactPage().isContactDisplayed(contact.getName()));
     }
 }

@@ -1,5 +1,6 @@
 package homework.pages;
 
+import homework.dto.ContactInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -21,31 +22,13 @@ public class AddContactPage extends BasePage {
         super(driver);
     }
 
-    public void enterName(String name) {
-        type(nameInput, name);
-    }
-
-    public void enterLastName(String lastName) {
-        type(lastNameInput, lastName);
-    }
-
-    public void enterPhone(String phone) {
-        type(phoneInput, phone);
-    }
-
-    public void enterEmail(String email) {
-        type(emailInput, email);
-    }
-
-    public void enterAddress(String address) {
-        type(addressInput, address);
-    }
-
-    public void enterDescription(String description) {
-        type(descriptionInput, description);
-    }
-
-    public void clickSaveButton() {
+    public void addContact(ContactInfo contactInfo) {
+        type(nameInput, contactInfo.getName());
+        type(lastNameInput, contactInfo.getLastName());
+        type(phoneInput, contactInfo.getPhone());
+        type(emailInput, contactInfo.getEmail());
+        type(addressInput, contactInfo.getAddress());
+        type(descriptionInput, contactInfo.getDescription());
         click(saveButton);
     }
 
