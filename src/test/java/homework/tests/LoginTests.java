@@ -1,6 +1,7 @@
 package homework.tests;
 
 import homework.dto.UserInfo;
+import homework.dto.UserInfoLombok;
 import homework.dto.UserInfoWith;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -14,7 +15,6 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-
     @Test
     public void positiveLoginUserInfo() {
         app.homePage().clickLoginLink();
@@ -26,9 +26,7 @@ public class LoginTests extends BaseTest {
     @Test
     public void positiveLoginUserInfoWith() {
         app.homePage().clickLoginLink();
-        UserInfoWith userInfoWith = new UserInfoWith()
-                .withEmail("testqa20@gmail.com")
-                .withPassword("123456Aa$");
+        UserInfoWith userInfoWith = new UserInfoWith().withEmail("testqa20@gmail.com").withPassword("123456Aa$");
         app.loginPage().login(userInfoWith);
         Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
     }
@@ -43,4 +41,16 @@ public class LoginTests extends BaseTest {
         By errorMessageLocator = By.xpath("//div[text()='Login Failed with code 401']");
         Assert.assertTrue(app.loginPage().isElementDisplayed(errorMessageLocator));
     }
+
+    @Test
+    public void positiveLoginWithLombok() {
+        UserInfoLombok userInfoLombok = UserInfoLombok.builder()
+                .email("testqa20@gmail.com")
+                .password("123456Aa$")
+                .build();
+        app.homePage().clickLoginLink();
+        app.loginPage().loginUserInfoLombok(userInfoLombok);
+        Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
+    }
+
 }

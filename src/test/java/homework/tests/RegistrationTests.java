@@ -1,6 +1,8 @@
 package homework.tests;
 
 import homework.dto.UserInfo;
+import homework.dto.UserInfoLombok;
+import homework.utils.RandomUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,5 +32,16 @@ public class RegistrationTests extends BaseTest {
         app.loginPage().register(existingUser);
         app.loginPage().waitForAlertAndAccept();
         Assert.assertTrue(app.loginPage().isElementDisplayed(app.loginPage().errorMessage()));
+    }
+    @Test
+    public void positiveRegistrationWithLombok() {
+        UserInfoLombok userInfoLombok = UserInfoLombok.builder()
+                .email(RandomUtils.randomEmail())
+                .password("123456Aa$")
+                .build();
+        app.homePage().clickLoginLink();
+        app.loginPage().registerWithLombok(userInfoLombok);
+        app.loginPage().waitForCondition();
+        Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
     }
 }

@@ -1,5 +1,6 @@
 package homework.pages;
 
+import homework.dto.UserInfoLombok;
 import homework.dto.UserInfoWith;
 import homework.utils.RandomUtils;
 import org.openqa.selenium.Alert;
@@ -39,6 +40,12 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
 
+    public void loginUserInfoLombok(UserInfoLombok user) {
+        type(emailInput, user.getEmail());
+        type(passwordInput, user.getPassword());
+        click(loginButton);
+    }
+
     public void register(UserInfo userInfo) {
         type(emailInput, userInfo.getEmail());
         type(passwordInput, userInfo.getPassword());
@@ -48,6 +55,10 @@ public class LoginPage extends BasePage {
     public void register() {
         type(emailInput, RandomUtils.randomEmail());
         type(passwordInput, RandomUtils.randomPassword());
+        click(registrationButton);
+    } public void registerWithLombok(UserInfoLombok user) {
+        type(emailInput, user.getEmail());
+        type(passwordInput, user.getPassword());
         click(registrationButton);
     }
 
@@ -63,9 +74,10 @@ public class LoginPage extends BasePage {
         click(aboutLink);
     }
 
-    public void waitForCondition(){
+    public void waitForCondition() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2).toMillis());
     }
+
     public void waitForAlertAndAccept() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2).toMillis());
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
@@ -75,6 +87,7 @@ public class LoginPage extends BasePage {
     public By errorMessage() {
         return By.xpath("//div[text()='Registration failed with code 400']");
     }
+
     public boolean isElementDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();
