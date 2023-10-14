@@ -94,8 +94,11 @@ public class LoginPage extends BasePage {
         actions.moveToElement(loginButton).moveByOffset(1,2).click().perform();
     }
 
-    public By errorMessage() {
+    public By errorMessageRegistration() {
         return By.xpath("//div[text()='Registration failed with code 400']");
+    }
+    public By errorMessageLogin() {
+        return By.xpath("//div[text()='Login Failed with code 401']");
     }
 
     public boolean isElementDisplayed(By locator) {

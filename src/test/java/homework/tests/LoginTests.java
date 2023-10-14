@@ -32,8 +32,8 @@ public class LoginTests extends BaseTest {
         app.loginPage().login(userInfo);
         app.loginPage().waitForAlertAndAccept();
 
-        By errorMessageLocator = By.xpath("//div[text()='Login Failed with code 401']");
-        Assert.assertTrue(app.loginPage().isElementDisplayed(errorMessageLocator));
+        Assert.assertTrue(app.loginPage().isElementDisplayed(app.loginPage().errorMessageLogin()));
+
     }
     @Test
     public void negativeLoginClickByXY() {
@@ -42,8 +42,7 @@ public class LoginTests extends BaseTest {
         app.loginPage().loginWithClickByXY(userInfo);
         app.loginPage().waitForAlertAndAccept();
 
-        By errorMessageLocator = By.xpath("//div[text()='Login Failed with code 401']");
-        Assert.assertTrue(app.loginPage().isElementDisplayed(errorMessageLocator));
+        Assert.assertTrue(app.loginPage().isElementDisplayed(app.loginPage().errorMessageLogin()));
     }
 
     @Test
