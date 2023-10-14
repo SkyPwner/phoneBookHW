@@ -3,11 +3,9 @@ package homework.pages;
 import homework.dto.UserInfoLombok;
 import homework.dto.UserInfoWith;
 import homework.utils.RandomUtils;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import homework.dto.UserInfo;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,6 +30,12 @@ public class LoginPage extends BasePage {
         type(emailInput, UserInfo.getEmail());
         type(passwordInput, UserInfo.getPassword());
         click(loginButton);
+    }
+
+    public void loginWithClickByXY(UserInfo UserInfo) {
+        type(emailInput, UserInfo.getEmail());
+        type(passwordInput, UserInfo.getPassword());
+        clickLoginButtonByCoordinates();
     }
 
     public void login(UserInfoWith userInfoWith) {
@@ -82,6 +86,12 @@ public class LoginPage extends BasePage {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2).toMillis());
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
+    }
+
+    public void clickLoginButtonByCoordinates() {
+        WebElement loginButton = driver.findElement(By.xpath("//button[@name='login']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(loginButton).moveByOffset(1,2).click().perform();
     }
 
     public By errorMessage() {
