@@ -3,11 +3,14 @@ package homework.manager;
 import homework.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
+    Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
     private WebDriver driver;
     private LoginPage loginPage;
     private HomePage homePage;
@@ -27,7 +30,7 @@ public class ApplicationManager {
         aboutPage = new AboutPage(driver);
         userProfilePage = new UserProfilePage(driver);
         addContactPage = new AddContactPage(driver);
-
+        logger.info("navigated to the url: https://telranedu.web.app/home");
     }
 
     public LoginPage loginPage() {
@@ -50,9 +53,7 @@ public class ApplicationManager {
         return addContactPage;
     }
 
-//    public WebDriver getDriver() {
-//        return driver;
-//    }
+    public boolean signedIn = false;
 
     public void tearDown() {
         driver.quit();

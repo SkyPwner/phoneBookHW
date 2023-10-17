@@ -9,8 +9,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import static homework.tests.BaseTest.app;
 
 public class LoginPage extends BasePage {
 
@@ -30,12 +30,7 @@ public class LoginPage extends BasePage {
         type(emailInput, UserInfo.getEmail());
         type(passwordInput, UserInfo.getPassword());
         click(loginButton);
-    }
-
-    public void loginWithClickByXY(UserInfo UserInfo) {
-        type(emailInput, UserInfo.getEmail());
-        type(passwordInput, UserInfo.getPassword());
-        clickLoginButtonByCoordinates();
+        app.signedIn = true;
     }
 
     public void login(UserInfoWith userInfoWith) {
@@ -50,6 +45,12 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
 
+    public void loginWithClickByXY(UserInfo UserInfo) {
+        type(emailInput, UserInfo.getEmail());
+        type(passwordInput, UserInfo.getPassword());
+        clickLoginButtonByCoordinates();
+    }
+
     public void register(UserInfo userInfo) {
         type(emailInput, userInfo.getEmail());
         type(passwordInput, userInfo.getPassword());
@@ -60,6 +61,7 @@ public class LoginPage extends BasePage {
         type(emailInput, RandomUtils.randomEmail());
         type(passwordInput, RandomUtils.randomPassword());
         click(registrationButton);
+
     } public void registerWithLombok(UserInfoLombok user) {
         type(emailInput, user.getEmail());
         type(passwordInput, user.getPassword());
@@ -99,13 +101,5 @@ public class LoginPage extends BasePage {
     }
     public By errorMessageLogin() {
         return By.xpath("//div[text()='Login Failed with code 401']");
-    }
-
-    public boolean isElementDisplayed(By locator) {
-        try {
-            return driver.findElement(locator).isDisplayed();
-        } catch (NoSuchElementException e) {
-            return false;
-        }
     }
 }
