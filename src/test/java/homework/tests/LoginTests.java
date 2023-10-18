@@ -19,6 +19,7 @@ public class LoginTests extends BaseTest {
     public void positiveLogin() {
         UserInfo userInfo = new UserInfo("testqa20@gmail.com", "123456Aa$");
         app.loginPage().login(userInfo);
+        app.signedIn = true;
         Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
     }
 

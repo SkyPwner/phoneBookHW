@@ -13,7 +13,7 @@ public class BaseTest {
 
     Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
-    public static ApplicationManager app = new ApplicationManager();
+    public ApplicationManager app = new ApplicationManager();
 
     @BeforeMethod
     public void startLogger(Method m) {

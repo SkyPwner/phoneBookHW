@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import static homework.tests.BaseTest.app;
 
 public class LoginPage extends BasePage {
 
@@ -30,7 +29,7 @@ public class LoginPage extends BasePage {
         type(emailInput, UserInfo.getEmail());
         type(passwordInput, UserInfo.getPassword());
         click(loginButton);
-        app.signedIn = true;
+
     }
 
     public void login(UserInfoWith userInfoWith) {
