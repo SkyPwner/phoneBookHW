@@ -6,31 +6,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
-import java.lang.reflect.Method;
 
 @Listeners(TestNGListener.class)
 public class BaseTest {
-
     Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
-    public ApplicationManager app = new ApplicationManager();
+    protected final ApplicationManager app = new ApplicationManager();
 
-    @BeforeMethod
-    public void startLogger(Method m) {
-        logger.info("start test" + m.getName());
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void endLogger(Method m) {
-        logger.info("End of test" + m.getName());
-    }
-
-    @BeforeSuite(alwaysRun = true)
+    @BeforeClass
     public void setup() {
         app.init();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void stop() {
         app.tearDown();
     }

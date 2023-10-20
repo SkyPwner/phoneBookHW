@@ -4,13 +4,16 @@ import homework.dto.UserInfo;
 import homework.dto.UserInfoLombok;
 import homework.dto.UserInfoWith;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
 public class LoginTests extends BaseTest {
     @BeforeMethod
-    public void preconditionsLogin() {
+    public void preconditionsRegistration() {
+        app.homePage().clickLoginLink();
+        app.homePage().refresh();
         logoutIfLogin();
         app.homePage().clickLoginLink();
     }

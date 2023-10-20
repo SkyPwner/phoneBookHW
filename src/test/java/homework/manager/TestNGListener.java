@@ -12,7 +12,7 @@ public class TestNGListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        logger.info("started test: " + result.getName());
+        logger.info("=============== started test: " + result.getName() + " ===============");
         ITestListener.super.onTestStart(result);
     }
 

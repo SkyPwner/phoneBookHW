@@ -3,13 +3,16 @@ package homework.tests;
 import homework.dto.UserInfo;
 import homework.utils.RandomUtils;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends BaseTest {
 
     @BeforeMethod
-    public void preconditionsLogin() {
+    public void preconditionsRegistration() {
+        app.homePage().clickLoginLink();
+        app.homePage().refresh();
         logoutIfLogin();
         app.homePage().clickLoginLink();
     }

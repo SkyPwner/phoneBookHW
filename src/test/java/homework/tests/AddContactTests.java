@@ -2,7 +2,6 @@ package homework.tests;
 
 import homework.dto.ContactInfo;
 import homework.dto.UserInfo;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +10,7 @@ public class AddContactTests extends BaseTest {
     @Test
     public void addContactPositiveTest() {
         app.homePage().clickLoginLink();
-        UserInfo userInfo = new UserInfo("testqa20@gmail.com", "123456Aa$");
+        UserInfo userInfo = new UserInfo("mytest@mail.ru", "12345678Aa$");
         app.loginPage().login(userInfo);
         app.userProfilePage().clickAddLink();
 
