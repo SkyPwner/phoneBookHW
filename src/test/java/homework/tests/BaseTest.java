@@ -2,18 +2,15 @@ package homework.tests;
 
 import homework.manager.ApplicationManager;
 import homework.manager.TestNGListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 
 @Listeners(TestNGListener.class)
 public class BaseTest {
-    Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
     protected final ApplicationManager app = new ApplicationManager();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         app.init();
     }

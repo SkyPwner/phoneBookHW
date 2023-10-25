@@ -11,14 +11,14 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
     @BeforeMethod
-    public void preconditionsRegistration() {
+    public void preconditionsLogin() {
         app.homePage().clickLoginLink();
         app.homePage().refresh();
         logoutIfLogin();
         app.homePage().clickLoginLink();
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void positiveLogin() {
         UserInfo userInfo = new UserInfo("testqa20@gmail.com", "123456Aa$");
         app.loginPage().login(userInfo);

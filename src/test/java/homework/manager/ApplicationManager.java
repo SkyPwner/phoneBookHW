@@ -1,7 +1,10 @@
 package homework.manager;
 
 import homework.pages.*;
+import homework.utils.ConfigProperties;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
+    static String browser;
     private EventFiringWebDriver driver;
     private LoginPage loginPage;
     private HomePage homePage;
@@ -17,12 +21,24 @@ public class ApplicationManager {
     private UserProfilePage userProfilePage;
     private AddContactPage addContactPage;
 
+    public ApplicationManager(){
+        browser = System.getProperty("browser", BrowserType.CHROME);
+    }
+
     public void init() {
-        driver = new EventFiringWebDriver(new ChromeDriver());
-        driver.navigate().to("https://telranedu.web.app/home");
+        if(browser.equals(BrowserType.CHROME)){
+            driver = new EventFiringWebDriver(new ChromeDriver());
+            logger.info("created chrome browser");
+        } else if (browser.equals(BrowserType.FIREFOX)) {
+            driver = new EventFiringWebDriver(new FirefoxDriver());
+            logger.info("created fireFox browser");
+            
+        }
+
+        driver.navigate().to(ConfigProperties.getProperty("url"));
+        logger.info("open page" + ConfigProperties.getProperty("url"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        logger.info("navigated to the url: https://telranedu.web.app/home");
 
         driver.register(new WDListener());
 

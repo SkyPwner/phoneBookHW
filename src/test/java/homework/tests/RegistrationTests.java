@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class RegistrationTests extends BaseTest {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preconditionsRegistration() {
         app.homePage().clickLoginLink();
         app.homePage().refresh();
@@ -17,10 +17,9 @@ public class RegistrationTests extends BaseTest {
         app.homePage().clickLoginLink();
     }
 
-    @Test
+    @Test (groups = {"smoke"})
     public void positiveRegistration() {
         app.loginPage().register();
-        app.loginPage().waitForCondition();
         Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
     }
 
