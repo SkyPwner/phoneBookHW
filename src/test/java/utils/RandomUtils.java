@@ -1,6 +1,7 @@
-package homework.utils;
+package utils;
 
 import com.github.javafaker.Faker;
+import org.apache.commons.lang3.StringUtils;
 
 public class RandomUtils {
     private static Faker faker = new Faker();
@@ -10,6 +11,10 @@ public class RandomUtils {
     }
 
     public static String randomPassword() {
-        return faker.internet().password(8, 16, true, true, true);
+        return faker.internet().password(8, 12, true, true, true);
+    }
+
+    public static String generateStringDigits(int length) {
+        return faker.numerify(StringUtils.repeat("#", length));
     }
 }

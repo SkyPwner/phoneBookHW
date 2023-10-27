@@ -1,10 +1,13 @@
-package homework.pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
@@ -44,7 +47,12 @@ public class BasePage {
         }
     }
 
-    public void refresh(){
+    public void waitForElementToDisappear(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).toMillis());
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    public void refresh() {
         driver.navigate().refresh();
     }
 }

@@ -1,7 +1,7 @@
-package homework.manager;
+package manager;
 
 import com.google.common.io.Files;
-import homework.utils.DatesUtils;
+import utils.DatesUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.slf4j.Logger;

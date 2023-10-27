@@ -1,4 +1,4 @@
-package homework.utils;
+package utils;
 
 import java.io.FileReader;
 import java.io.IOException;

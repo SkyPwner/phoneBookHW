@@ -1,4 +1,4 @@
-package homework.dto;
+package dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -11,8 +11,6 @@ import lombok.ToString;
 @Builder
 
 public class UserInfoLombok {
-    String name;
-    String lastName;
     String email;
     String password;
 }

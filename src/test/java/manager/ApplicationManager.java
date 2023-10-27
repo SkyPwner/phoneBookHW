@@ -1,7 +1,7 @@
-package homework.manager;
+package manager;
 
-import homework.pages.*;
-import homework.utils.ConfigProperties;
+import pages.*;
+import utils.ConfigProperties;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -21,25 +21,24 @@ public class ApplicationManager {
     private UserProfilePage userProfilePage;
     private AddContactPage addContactPage;
 
-    public ApplicationManager(){
+    public ApplicationManager() {
         browser = System.getProperty("browser", BrowserType.CHROME);
     }
 
     public void init() {
-        if(browser.equals(BrowserType.CHROME)){
+        if (browser.equals(BrowserType.CHROME)) {
             driver = new EventFiringWebDriver(new ChromeDriver());
             logger.info("created chrome browser");
         } else if (browser.equals(BrowserType.FIREFOX)) {
             driver = new EventFiringWebDriver(new FirefoxDriver());
             logger.info("created fireFox browser");
-            
+
         }
 
         driver.navigate().to(ConfigProperties.getProperty("url"));
         logger.info("open page" + ConfigProperties.getProperty("url"));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.register(new WDListener());
 
         loginPage = new LoginPage(driver);
@@ -47,6 +46,7 @@ public class ApplicationManager {
         aboutPage = new AboutPage(driver);
         userProfilePage = new UserProfilePage(driver);
         addContactPage = new AddContactPage(driver);
+
     }
 
     public LoginPage loginPage() {
@@ -66,6 +66,10 @@ public class ApplicationManager {
     }
 
     public AddContactPage addContactPage() {
+        return addContactPage;
+    }
+
+    public AddContactPage getAddContactPage() {
         return addContactPage;
     }
 

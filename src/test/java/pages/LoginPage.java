@@ -1,14 +1,15 @@
-package homework.pages;
+package pages;
 
-import homework.dto.UserInfoLombok;
-import homework.dto.UserInfoWith;
-import homework.utils.RandomUtils;
+import dto.UserInfo;
+import dto.UserInfoWith;
+import dto.UserInfoLombok;
+import utils.RandomUtils;
 import org.openqa.selenium.*;
-import homework.dto.UserInfo;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
@@ -19,6 +20,7 @@ public class LoginPage extends BasePage {
     By registrationButton = By.xpath("//button[@name='registration']");
     By homeLink = By.xpath("//a[@href='/home']");
     By aboutLink = By.xpath("//a[@href='/about']");
+    By signOutButton = By.xpath("//button[text()='Sign Out']");
 
 
     public LoginPage(WebDriver driver) {
@@ -61,7 +63,9 @@ public class LoginPage extends BasePage {
         type(passwordInput, RandomUtils.randomPassword());
         click(registrationButton);
 
-    } public void registerWithLombok(UserInfoLombok user) {
+    }
+
+    public void registerWithLombok(UserInfoLombok user) {
         type(emailInput, user.getEmail());
         type(passwordInput, user.getPassword());
         click(registrationButton);
@@ -92,13 +96,14 @@ public class LoginPage extends BasePage {
     public void clickLoginButtonByCoordinates() {
         WebElement loginButton = driver.findElement(By.xpath("//button[@name='login']"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(loginButton).moveByOffset(1,2).click().perform();
+        actions.moveToElement(loginButton).moveByOffset(1, 2).click().perform();
     }
 
     public By errorMessageRegistration() {
-        return By.xpath("//div[text()='Registration failed with code 400']");
+        return By.xpath("//*[contains(text(), 'Registration failed with code')]");
     }
+
     public By errorMessageLogin() {
-        return By.xpath("//div[text()='Login Failed with code 401']");
+        return By.xpath("//*[contains(text(),'Login Failed with code')]");
     }
 }

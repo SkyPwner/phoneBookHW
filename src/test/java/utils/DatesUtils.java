@@ -1,4 +1,4 @@
-package homework.utils;
+package utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

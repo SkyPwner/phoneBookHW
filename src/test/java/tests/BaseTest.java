@@ -1,7 +1,8 @@
-package homework.tests;
+package tests;
 
-import homework.manager.ApplicationManager;
-import homework.manager.TestNGListener;
+import dto.UserInfoLombok;
+import manager.ApplicationManager;
+import manager.TestNGListener;
 import org.testng.annotations.*;
 
 
@@ -9,6 +10,10 @@ import org.testng.annotations.*;
 public class BaseTest {
 
     protected final ApplicationManager app = new ApplicationManager();
+    UserInfoLombok user = UserInfoLombok.builder()
+            .email("mytest@mail.ru")
+            .password("12345678Aa$")
+            .build();
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -21,7 +26,7 @@ public class BaseTest {
     }
 
     public void logoutIfLogin() {
-        if (app.signedIn){
+        if (app.signedIn) {
             app.userProfilePage().clickSignOutButton();
             app.signedIn = false;
         }

@@ -3,7 +3,7 @@
 <suite name="Production" verbose="1" >
     <test name="smoke" >
         <classes>
-            <class name="homework.tests.RegistrationTests" />
+            <class name="tests.RegistrationTests" />
         </classes>
     </test>
 </suite>
