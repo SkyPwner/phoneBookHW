@@ -46,12 +46,6 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
 
-    public void loginWithClickByXY(UserInfo UserInfo) {
-        type(emailInput, UserInfo.getEmail());
-        type(passwordInput, UserInfo.getPassword());
-        clickLoginButtonByCoordinates();
-    }
-
     public void register(UserInfo userInfo) {
         type(emailInput, userInfo.getEmail());
         type(passwordInput, userInfo.getPassword());

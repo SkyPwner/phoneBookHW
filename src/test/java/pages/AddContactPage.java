@@ -24,7 +24,6 @@ public class AddContactPage extends BasePage {
     By removeContactButton = By.xpath("//button[text()='Remove']");
     By textH3ContactList = By.xpath("//h3");
 
-
     public AddContactPage(WebDriver driver) {
         super(driver);
     }
@@ -49,12 +48,12 @@ public class AddContactPage extends BasePage {
                 .anyMatch(element -> element.getText().equals(text));
     }
 
-    public void openContactInfoByPhone(String phone)  {
+    public void openContactInfoByPhone(String phone) {
         By phoneNumberInContacts = By.xpath("//h3[contains(text(),'" + phone + "')]");
         click(phoneNumberInContacts);
     }
 
-    public void removeActiveContact(){
+    public void removeActiveContact() {
         click(removeContactButton);
         waitForElementToDisappear(removeContactButton);
     }

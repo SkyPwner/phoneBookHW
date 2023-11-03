@@ -7,7 +7,7 @@ public class TestDataGenerator {
         int numberOfUsers = 3;
         String csvFilePath = "src/test/resources/datalogin.csv";
 
-        try (FileWriter writer = new FileWriter(csvFilePath)) {
+        try (FileWriter writer = new FileWriter(csvFilePath )) {
             for (int i = 0; i < numberOfUsers; i++) {
                 String randomEmail = RandomUtils.randomEmail();
                 String randomPassword = RandomUtils.randomPassword();

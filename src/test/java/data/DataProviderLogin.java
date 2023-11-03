@@ -11,24 +11,6 @@ import java.util.List;
 public class DataProviderLogin {
 
     @DataProvider
-    public Iterator<Object[]> positiveDataLogin() {
-        List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{
-                UserInfoLombok.builder()
-                        .email("testqa20@gmail.com")
-                        .password("123456Aa$")
-                        .build()
-        });
-        list.add(new Object[]{
-                UserInfoLombok.builder()
-                        .email("testqa20@gmail.com")
-                        .password("123456Aa$")
-                        .build()
-        });
-        return list.iterator();
-    }
-
-    @DataProvider
     public Iterator<Object[]> negativePasswordDataLogin() {
         List<Object[]> list = new ArrayList<>();
         list.add(new Object[]{
@@ -50,7 +32,7 @@ public class DataProviderLogin {
     public Iterator<Object[]> loginCSV() {
         List<Object[]> list = new ArrayList<>();
         String path = "src/test/resources/datalogin.csv";
-        try(BufferedReader reader = new BufferedReader(new FileReader(new File(path)))) {
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("datalogin.csv")))) {
             String line = reader.readLine();
             while(line != null) {
                 String[] split = line.split(",");
