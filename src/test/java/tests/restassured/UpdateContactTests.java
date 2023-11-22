@@ -2,8 +2,11 @@ package tests.restassured;
 
 import com.jayway.restassured.response.Response;
 import dto.ContactInfo;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class UpdateContactTests extends BaseRA {
 
@@ -13,15 +16,17 @@ public class UpdateContactTests extends BaseRA {
         Response response = contactsService.getResponseAddNewContact(originalContact, token);
 
         System.out.println(response.body().asString());
+        ContactInfo foundContact = findContactByNameAndLastName(originalContact.getName(), originalContact.getLastName(), token);
+        Assert.assertNotNull(foundContact, "Contact not found by criteria");
 
         ContactInfo updatedContact = ContactInfo.builder()
-                .id(response.body().jsonPath().getString("id"))
+                .id(foundContact.getId())
                 .name("Updated Name")
-                .lastName(originalContact.getLastName())
+                .lastName(foundContact.getLastName())
                 .email("updatedemail@example.com")
-                .phone(originalContact.getPhone())
-                .address(originalContact.getAddress())
-                .description(originalContact.getDescription())
+                .phone(foundContact.getPhone())
+                .address(foundContact.getAddress())
+                .description(foundContact.getDescription())
                 .build();
 
         contactsService.getStatusCodeResponseUpdateContact(updatedContact, token);
@@ -35,5 +40,16 @@ public class UpdateContactTests extends BaseRA {
                 "Email not updated correctly");
 
         softAssert.assertAll();
+    }
+    private ContactInfo findContactByNameAndLastName(String name, String lastName, String token) {
+        List<ContactInfo> allContacts = contactsService.getAllContacts(token);
+
+        for (ContactInfo contact : allContacts) {
+            if (contact.getName().equals(name) && contact.getLastName().equals(lastName)) {
+                return contact;
+            }
+        }
+
+        return null;
     }
 }

@@ -52,7 +52,7 @@ public class ContactsService extends BaseApi {
                 .header("Authorization", token)
                 .body(contactInfo)
                 .when()
-                .put(baseUrl + "/v1/contacts/" + contactInfo.getId());
+                .put(baseUrl + "/v1/contacts/");
         return responseUpdateContact;
     }
 
@@ -63,16 +63,6 @@ public class ContactsService extends BaseApi {
         return responseUpdateContact.getStatusCode();
     }
 
-    public String getMessageResponseUpdateContact(ContactInfo contactInfo, String token) {
-        if (responseUpdateContact == null) {
-            responseUpdateContact = getResponseUpdateContact(contactInfo, token);
-        }
-        return responseUpdateContact.getBody().as(MessageResponseDTO.class).getMessage();
-    }
-
-    public void setResponseAddNewContactNull() {
-        responseAddNewContact = null;
-    }
     // ---------------------- Delete Contact ----------------------
 
     public int deleteContact(String contactId, String token) {
@@ -108,7 +98,6 @@ public class ContactsService extends BaseApi {
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", token)
-                .log().all()
                 .when()
                 .get(baseUrl + "/v1/contacts")
                 .then()
