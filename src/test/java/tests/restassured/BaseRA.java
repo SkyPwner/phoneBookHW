@@ -26,12 +26,12 @@ public class BaseRA {
     public ContactInfo createNewContact() {
         String phoneNumber = RandomUtils.generateStringDigits(12);
         return ContactInfo.builder()
-                .address("sjdfkbwi")
-                .description("bdfigyeg")
-                .email("sjdfnsjhb@mail.com")
-                .id("5")
-                .lastName("sjkdbfh")
-                .name("nbsefdj")
+                .address("Haifa")
+                .description("TestForUpdateContact")
+                .email("testForUpdateContact@mail.com")
+                .id("0")
+                .lastName("Aa")
+                .name("Bb")
                 .phone(phoneNumber)
                 .build();
     }
