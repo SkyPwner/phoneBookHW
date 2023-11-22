@@ -1,5 +1,7 @@
 package manager;
 
+import lombok.Getter;
+import org.openqa.selenium.support.PageFactory;
 import pages.*;
 import utils.ConfigProperties;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +21,7 @@ public class ApplicationManager {
     private HomePage homePage;
     private AboutPage aboutPage;
     private UserProfilePage userProfilePage;
+    @Getter
     private AddContactPage addContactPage;
 
     public ApplicationManager() {
@@ -66,10 +69,6 @@ public class ApplicationManager {
     }
 
     public AddContactPage addContactPage() {
-        return addContactPage;
-    }
-
-    public AddContactPage getAddContactPage() {
         return addContactPage;
     }
 

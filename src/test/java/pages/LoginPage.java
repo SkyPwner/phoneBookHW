@@ -1,7 +1,5 @@
 package pages;
 
-import dto.UserInfo;
-import dto.UserInfoWith;
 import dto.UserInfoLombok;
 import utils.RandomUtils;
 import org.openqa.selenium.*;
@@ -27,29 +25,10 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void login(UserInfo UserInfo) {
-        type(emailInput, UserInfo.getEmail());
-        type(passwordInput, UserInfo.getPassword());
-        click(loginButton);
-
-    }
-
-    public void login(UserInfoWith userInfoWith) {
-        type(emailInput, userInfoWith.getEmail());
-        type(passwordInput, userInfoWith.getPassword());
-        click(loginButton);
-    }
-
     public void loginUserInfoLombok(UserInfoLombok user) {
-        type(emailInput, user.getEmail());
+        type(emailInput, user.getUsername());
         type(passwordInput, user.getPassword());
         click(loginButton);
-    }
-
-    public void register(UserInfo userInfo) {
-        type(emailInput, userInfo.getEmail());
-        type(passwordInput, userInfo.getPassword());
-        click(registrationButton);
     }
 
     public void register() {
@@ -60,7 +39,7 @@ public class LoginPage extends BasePage {
     }
 
     public void registerWithLombok(UserInfoLombok user) {
-        type(emailInput, user.getEmail());
+        type(emailInput, user.getUsername());
         type(passwordInput, user.getPassword());
         click(registrationButton);
     }

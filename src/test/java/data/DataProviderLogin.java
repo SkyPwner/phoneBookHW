@@ -19,13 +19,13 @@ public class DataProviderLogin {
         List<Object[]> list = new ArrayList<>();
         list.add(new Object[]{
                 UserInfoLombok.builder()
-                        .email("testqa20@gmail.com")
+                        .username("testqa20@gmail.com")
                         .password("123456A88")
                         .build()
         });
         list.add(new Object[]{
                 UserInfoLombok.builder()
-                        .email("testqa20@gmail.com")
+                        .username("testqa20@gmail.com")
                         .password("123456Aaa")
                         .build()
         });

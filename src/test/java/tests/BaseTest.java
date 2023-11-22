@@ -3,6 +3,7 @@ package tests;
 import dto.UserInfoLombok;
 import manager.ApplicationManager;
 import manager.TestNGListener;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 
 
@@ -11,7 +12,7 @@ public class BaseTest {
 
     protected final ApplicationManager app = new ApplicationManager();
     UserInfoLombok user = UserInfoLombok.builder()
-            .email("mytest@mail.ru")
+            .username("mytest@mail.ru")
             .password("12345678Aa$")
             .build();
 

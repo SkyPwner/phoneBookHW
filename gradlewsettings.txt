@@ -1,5 +1,5 @@
 ./gradlew test
-,/gradlew clean test
+./gradlew clean test
 ./gradlew clean -Pbrowser=firefox loginTest
 ./gradlew clean -Pbrowser=chrome loginTest
 ./gradlew clean -Dgroups=smoke shortTests

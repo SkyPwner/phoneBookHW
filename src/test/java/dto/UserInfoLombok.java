@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 
 public class UserInfoLombok {
-    String email;
+    String username;
     String password;
 }
 

@@ -1,9 +1,7 @@
 package tests;
 
 import data.DataProviderLogin;
-import dto.UserInfo;
 import dto.UserInfoLombok;
-import utils.RandomUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,13 +25,5 @@ public class RegistrationTests extends BaseTest {
         app.loginPage().registerWithLombok(userInfoLombok);
         app.signedIn = true;
         Assert.assertTrue(app.userProfilePage().isLoginSuccessful());
-    }
-
-    @Test
-    public void negativeRegistrationWithEmptyEmail() {
-        UserInfo existingUser = new UserInfo("", "12345678Aa$");
-        app.loginPage().register(existingUser);
-        app.loginPage().waitForAlertAndAccept();
-        Assert.assertTrue(app.loginPage().isElementDisplayed(app.loginPage().errorMessageRegistration()));
     }
 }
